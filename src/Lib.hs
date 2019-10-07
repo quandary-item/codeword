@@ -93,10 +93,16 @@ solve = undefined
 toFeatures :: String -> [(Int, Int, Char)]
 toFeatures word = zip3 (repeat $ length word) [0..] (map toUpper word)
 
-
 makeIndex :: (Ord a, Ord b) => (a -> [b]) -> [a] -> Map.Map b (Set.Set a)
 makeIndex getKeys values = Map.fromListWith (<>) $ concatMap something values
   where something word = zip (getKeys word) (repeat $ Set.singleton word)
+
+intersections :: (Ord a) => [Set.Set a] -> Set.Set a
+intersections [] = Set.empty
+intersections (x:xs) = foldl Set.intersection x xs
+
+multipleLookup :: (Ord k, Ord v) => [k] -> Map.Map k (Set.Set v) -> Set.Set v
+multipleLookup keys mapping = intersections $ map (flip (Map.findWithDefault Set.empty) mapping) keys
 
 showSolution :: BoardProblem -> Solution -> String
 showSolution (BoardProblem { rows = rows }) mapping = showGrid 2 lookupCell rows
