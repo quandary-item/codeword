@@ -14,6 +14,11 @@ import Problem
 someFunc :: IO ()
 someFunc = putStrLn "someFunc"
 
+{-
+linuxwords <- readFile "./linuxwords.txt"
+let words = lines linuxwords
+-}
+
 type Solution = Map.Map Int Char
 
 solve :: Problem -> Solution
