@@ -28,8 +28,8 @@ toFeatures :: String -> [(Int, Int, Char)]
 toFeatures word = zip3 (repeat $ length word) [0..] (map toUpper word)
 
 makeIndex :: (Ord a, Ord b) => (a -> [b]) -> [a] -> Map.Map b (Set.Set a)
-makeIndex getKeys values = Map.fromListWith (<>) $ concatMap something values
-  where something word = zip (getKeys word) (repeat $ Set.singleton word)
+makeIndex getKeys values = Map.map Set.fromList $ Map.fromListWith (<>) $ concatMap something values
+  where something word = zip (getKeys word) (repeat $ [word])
 
 intersections :: (Ord a) => [Set.Set a] -> Set.Set a
 intersections [] = Set.empty
