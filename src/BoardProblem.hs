@@ -25,7 +25,8 @@ r' = [ [ cn 16, cn 14, cn 22, cn 19, cn 5 , cn 6 , cn 26, cE   , cn 25, cn 26, c
      , [ cn 11, cn 10, cn 16, cn 22, cn 9 , cn 10, cn 24, cE   , cn 8 , cn 22, cn 11, cn 5 , cn 26, cn 3 , cn 7  ]
      ]
 
-testProblem = BoardProblem { rows = r'}
+testBoardProblem = BoardProblem { rows = r'}
+testProblem = importProblem testBoardProblem
 
 -- the language for specifying problems
 cn = CellNumber
