@@ -61,7 +61,7 @@ makeBranches solution = case nextNumber solution of
   Nothing -> []
   Just i  -> map (\char -> Map.insert i char solution) $ availableChars solution
 
-solveCodeWordStep :: WordIndex -> Problem -> Solution -> Result (Solution)
+solveCodeWordStep :: WordIndex -> Problem -> Solution -> Result Solution
 solveCodeWordStep wordIndex problem solution
   | isInvalidSolution wordIndex problem solution = NoSolution
   | isComplete solution                          = Solution solution
